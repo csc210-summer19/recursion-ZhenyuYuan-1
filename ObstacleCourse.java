@@ -79,24 +79,26 @@ public class ObstacleCourse {
 		// foundCol in this method when the exit is found.
 		//
 		boolean escaped = false;
-		if (course[row][col] != '+') {
+		if (course[row][col] == ' ') {
 			course[row][col] = TRIED;
-			if (row == 0 || row == course.length - 1 || col == 0 || col == course[0].length) {
+			if (row == 0 || row == course.length - 1 || col == 0 || col == course[0].length - 1) {
 				escaped = true;
+			} else {
+				escaped = findExit(row + 1, col);
+				if (escaped == false)
+					escaped = findExit(row, col + 1);
+				if (escaped == false)
+					escaped = findExit(row - 1, col);
+				if (escaped == false)
+					escaped = findExit(row, col - 1);
 			}
-		} else {
-			escaped = findExit(row++, col);
-			if (escaped == false)
-				escaped = findExit(row--, col++);
-			if (escaped == false)
-				escaped = findExit(row--, col--);
-			if (escaped == false)
-				escaped = findExit(row++, col--);
-		}
-		if (escaped == true) {
-			foundRow = row;
-			foundCol = col;
-			course[row][col] = PART_OF_PATH;
+			if (escaped == true) {
+				if (foundRow == -1) {
+					foundRow = row;
+					foundCol = col;
+					course[row][col] = PART_OF_PATH;
+				}
+			}
 		}
 		return escaped;
 	}

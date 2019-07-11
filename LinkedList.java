@@ -122,17 +122,23 @@ public class LinkedList<E extends Comparable<E>> {
 		removeAll(first, el);
 	}
 
-	private E removeAll(Node ref, E el) {
+	private void removeAll(Node ref, E el) {
 		if (ref == null) {
-			return null;
-		} else if (ref.data == el) {
-
-			ref.data = ref.next.data;
-			ref = ref.next;
+			return;
+		}
+		if (el.equals(first.data)) {
+			first = first.next;
 			n--;
-			return removeAll(ref.next, el);
-		} else {
-			return removeAll(ref.next, el);
+			removeAll(first, el);
+		}
+		if (ref.next != null) {
+			if (el.equals(ref.next.data)) {
+				ref.next = ref.next.next;
+				n--;
+				removeAll(ref.next, el);
+			} else {
+				removeAll(ref.next, el);
+			}
 		}
 	}
 
