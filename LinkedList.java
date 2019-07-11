@@ -107,7 +107,7 @@ public class LinkedList<E extends Comparable<E>> {
 		// TODO: Complete this method using recursion, no loop allowed.
 		if (startIndex == stopIndex) {
 			return ref.data;
-		}else {
+		} else {
 			ref = ref.next;
 			startIndex++;
 			return get(ref, startIndex, stopIndex);
@@ -121,13 +121,14 @@ public class LinkedList<E extends Comparable<E>> {
 		// with first as an argument. It must be recursive, no loop allowed.
 		removeAll(first, el);
 	}
-	private E removeAll(Node ref,E el) {
+
+	private E removeAll(Node ref, E el) {
 		if (ref == null) {
 			return null;
-		} else if(ref.data == el) {
-			
+		} else if (ref.data == el) {
+
 			ref.data = ref.next.data;
-            ref = ref.next;
+			ref = ref.next;
 			n--;
 			return removeAll(ref.next, el);
 		} else {
@@ -139,22 +140,23 @@ public class LinkedList<E extends Comparable<E>> {
 	public void duplicateAll(E el) {
 		// This public method requires a call to a private helper method
 		// with first as an argument. It must be recursive, no loop allowed.
-		
+
 		duplicateAll(first, el);
 	}
-	private E duplicateAll(Node ref,E el) {
-		if(ref == null) {
+
+	private E duplicateAll(Node ref, E el) {
+		if (ref == null) {
 			return null;
-		} else if(ref.data.equals(el)) {
+		} else if (ref.data.equals(el)) {
 			Node temp = new Node(el, first);
 			temp.data = ref.data;
 			temp.next = ref.next;
 			ref.next = temp;
 			n++;
-			return duplicateAll(temp.next,el);
+			return duplicateAll(temp.next, el);
 		} else {
 			ref = ref.next;
-			return duplicateAll(ref,el);
+			return duplicateAll(ref, el);
 		}
 	}
 

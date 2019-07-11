@@ -3,7 +3,7 @@
  * escape. This does not find the shorted path. Because of this, we must always
  * assume there is only one exit.
  * 
- * @author Rick Mercer and Your Name
+ * @author Rick Mercer and Zhenyu Yuan
  */
 public class ObstacleCourse {
 
